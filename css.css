@@ -1,0 +1,22 @@
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f8f9fa;
+}
+
+.fondo{
+    background-image: url('img/fondo-login.jpg'); /* Reemplaza con la ruta de tu imagen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Asegura que la imagen de fondo cubra toda la altura de la ventana */
+  }
+
+.card {
+  width: 100%;
+  max-width: 400px;
+}
