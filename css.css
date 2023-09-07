@@ -1,4 +1,10 @@
 
+textarea[type]:focus,input[type]:focus, button[type]:focus {
+  border: 2px solid #4ddb83;    
+  box-shadow: 0px 0px;
+  } 
+
+
 body {
   display: flex;
   justify-content: center;
