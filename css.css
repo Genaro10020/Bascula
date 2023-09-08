@@ -5,7 +5,7 @@ textarea[type]:focus,input[type]:focus, button[type]:focus {
   } 
 
 
-body {
+.body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,4 +25,28 @@ body {
 .card {
   width: 100%;
   max-width: 400px;
+}
+
+.btn-menu{
+  font-size:18px;
+  border: solid 2px #35ec54;
+  border-radius: 5px;
+  background-color:#0ec72d;
+  color:rgb(6, 53, 24);
+  min-width: 180px;
+  min-width: 190px;
+  width: 195px;
+  height: 50px;
+  font-size: 1em;
+  margin: 10px 0px 10px 0px;
+  transition: color 0.3s, font-weight 0.3s;
+}
+
+.btn-menu:hover{
+  color:rgb(14, 73, 6);
+  font-weight: bold;
+}
+
+.cinta{
+  background-color:#078b1d;
 }
