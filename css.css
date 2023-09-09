@@ -4,7 +4,6 @@ textarea[type]:focus,input[type]:focus, button[type]:focus {
   box-shadow: 0px 0px;
   } 
 
-
 .body {
   display: flex;
   justify-content: center;
@@ -14,6 +13,8 @@ textarea[type]:focus,input[type]:focus, button[type]:focus {
   background-color: #f8f9fa;
 }
 
+
+
 .fondo{
     background-image: url('img/fondo-login.jpg'); /* Reemplaza con la ruta de tu imagen */
     background-size: cover;
@@ -22,17 +23,15 @@ textarea[type]:focus,input[type]:focus, button[type]:focus {
     min-height: 100vh; /* Asegura que la imagen de fondo cubra toda la altura de la ventana */
   }
 
-.card {
-  width: 100%;
-  max-width: 400px;
-}
+
 
 .btn-menu{
   font-size:18px;
-  border: solid 2px #35ec54;
+  border: solid 1px #045812;
   border-radius: 5px;
-  background-color:#0ec72d;
-  color:rgb(6, 53, 24);
+  background-color:#086450;
+
+  color:white;
   min-width: 180px;
   min-width: 190px;
   width: 195px;
@@ -43,10 +42,52 @@ textarea[type]:focus,input[type]:focus, button[type]:focus {
 }
 
 .btn-menu:hover{
-  color:rgb(14, 73, 6);
+  background-color:#75e487;
   font-weight: bold;
 }
 
 .cinta{
-  background-color:#078b1d;
+  height: 5h;
+  background-color: #d9f7e0;
+  box-shadow: 2px 4px 20px #080808;
+}
+
+
+.body-panel{
+  background-color: #f0f0f0
+}
+
+.btn-aceptar{
+  background-color:#086450;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  height: 45px;
+}
+
+.bascula{
+  height: 80vh;
+}
+
+.label-letra{
+  font-size: 1em;
+  margin-bottom:0px;
+  margin-top:10px;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #f0f0f0;
+  font-family: 'Arvo', serif;
+ box-shadow: 0px 0px 10px 2px  rgb(0, 0, 0);
+}
+
+.input-alto{
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+} 
+
+.buscar{
+  background-color:#45b16b;
 }

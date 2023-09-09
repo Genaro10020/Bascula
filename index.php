@@ -29,11 +29,11 @@ session_destroy();
                         <input type="text" v-model="username" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label >Contraseña</label>
+                        <label  >Contraseña</label>
                         <input type="password" v-model="password" class="form-control" required>
                     </div>
                       <div class="d-flex justify-content-center">
-                          <button type="submit" class=" w-50 btn btn-primary btn-block">Acceder</button>
+                          <button type="submit" class=" w-50 btn btn-success btn-block">Acceder</button>
                     </div>
                   </form>
                     <div class="col-12 d-flex justify-content-center">
