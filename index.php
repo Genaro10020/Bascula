@@ -18,7 +18,7 @@ session_destroy();
    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body class="fondo body">
-        <div id="app" class="card shadow p-3 mb-5 bg-white rounded" >
+        <div id="app" class="card-index shadow p-3 mb-5 bg-white rounded" >
                 <div class="card-header bg-success text-light">
                   <h4 class="text-center ">L O G I N</h4>
                 </div>

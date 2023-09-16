@@ -13,7 +13,12 @@ if($query){
         $respuesta= "Correcto";
         $fila = mysqli_fetch_assoc($query); 
         $nombre = $fila['nombre'];
+        $usuario = $fila['usuario'];
+        $tipo = $fila['tipo'];
         $_SESSION['nombre'] = $nombre;
+        $_SESSION['usuario'] = $usuario;
+        $_SESSION['tipo'] = $tipo;
+        
     }else{
         $respuesta="Incorrecto";
     }
