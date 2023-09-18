@@ -70,21 +70,25 @@ if(isset($_SESSION['nombre'])){
                                                 <input type="text" v-model="productor" class="form-control rounded-pill input-alto" required :disabled="mostrarInput  == 1">
                                             </div>
                                             <div class="form-group">
-                                                <label class="label-letra">Placas del Vehículo (Opcional)</label>
-                                                <input type="text" v-model="placas" class="form-control rounded-pill input-alto"   @input="toUpperCase" :disabled="mostrarInput  == 1">
+                                                <label class="label-letra">Cajas (Pzas.)</label>
+                                                <input type="number" v-model="cajas" step="1.0" class="form-control rounded-pill input-alto"   required :disabled="mostrarInput  == 1">
                                             </div>
                                             <div class="form-group  text-center">
-                                                <label class="label-letra">Peso Bruto</label>
-                                                <input type="number" v-model="pesobruto" step="0.1" class="form-control  text-center rounded-pill input-alto" required  :disabled="mostrarInput  == 1">
+                                                <label class="label-letra">Peso Bruto  (Kg)</label>
+                                                <input type="number" v-model="pesobruto" step="1.0" class="form-control  text-center rounded-pill input-alto" required :disabled="mostrarInput  == 1">
                                             </div>
                                             <div class="form-group text-center" :class="{'d-none ': mostrarInput==0, 'd-block' : mostrarInput==1}">
-                                                <label class="label-letra">Peso Tara</label>
-                                                <input type="number" v-model="pesotara" step="0.1" class="form-control rounded-pill input-alto text-center"  @input="restarTaraBruto">
+                                                <label class="label-letra">Peso Tara  (Kg)</label>
+                                                <input type="number" v-model="pesotara" step="1.0"  min="0" class="form-control rounded-pill input-alto text-center" :required="mostrarInput  == 1" @input="restarTaraBruto">
                                             </div>
                                             <div class="form-group text-center  label-neto " :class="{'d-none ': mostrarInput==0, 'd-block' : mostrarInput==1}">
-                                                <label class="label-letra">PESO NETO</label>
-                                                <input type="number" v-model="pesoneto" step="0.1" class="form-control rounded-pill  input-neto" required disabled>
-                                            </div>
+                                                <label class="label-letra">PESO NETO  (Kg)</label>
+                                                <input type="number" v-model="pesoneto" step="1.0" class="form-control rounded-pill  input-neto" :required="mostrarInput  == 1"disabled>
+                                            </div>     
+                                            <div class="form-group text-center  label-neto " :class="{'d-none ': mostrarInput==0, 'd-block' : mostrarInput==1}">
+                                                <label class="label-letra">TOTAL A PAGAR $</label>
+                                                <input type="number" v-model="pagar" step="1.0"  min="0"  class="form-control rounded-pill  input-neto" :required="mostrarInput  == 1">
+                                            </div>      
                                             <div class="d-flex justify-content-center text-center">
                                                 <button type="submit" class=" w-50 btn-aceptar rounded-pill btn-block">GUARDAR</button>
                                             </div>
@@ -99,20 +103,22 @@ if(isset($_SESSION['nombre'])){
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Productor</th>
-                                            <th scope="col">Placas del Vehículo</th>
+                                            <th scope="col">Cajas</th>
                                             <th scope="col">Peso Bruto</th>
+                                            <th scope="col">Fecha peso Bruto</th>
                                             <th scope="col">Finalizar Peso</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-if="registrosBrutos.length==0">
-                                                <th colspan="5"  class="text-center" scope="row">No existen registros por el momento</th>
+                                                <th colspan="6"  class="text-center" scope="row">No existen registros por el momento</th>
                                         </tr>
                                         <tr v-else v-for="(registrobruto, index) in registrosBrutos" >
                                                 <th  class="text-center align-middle ">{{index+1}}</th>
                                                 <td class="text-center align-middle">{{registrobruto.productor}}</td>
-                                                <td class="text-center align-middle">{{registrobruto.placas}}</td>
-                                                <td class="text-center align-middle">{{registrobruto.peso_bruto}}</td>
+                                                <td class="text-center align-middle">{{registrobruto.cajas}} (Pzas.)</td>
+                                                <td class="text-center align-middle">{{registrobruto.peso_bruto}} (Kg.)</td>
+                                                <td class="text-center align-middle">{{registrobruto.fecha_dma}}</td>
                                                 <td>  <button type="button" class="mx-auto w-50 btn-tablas rounded-pill btn-block" 
                                                 @click="opcionUno=1,opcionDos=0,opcionTres=0,opcionCuatro=0,seleccionarResultado(registrobruto.id)">Pesar Tara</button></td>
                                         </tr>
@@ -127,25 +133,27 @@ if(isset($_SESSION['nombre'])){
                                         <tr >
                                             <th scope="col">#</th>
                                             <th scope="col">Productor</th>
-                                            <th scope="col">Placas del Vehículo</th>
+                                            <th scope="col">Cajas</th>
                                             <th scope="col">Peso Bruto</th>
                                             <th scope="col">Tara</th>
                                             <th scope="col">Fecha peso Tara</th>
                                             <th scope="col">Neto</th>
+                                            <th scope="col">Pago</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-if="registrosFinalizados.length==0">
-                                                <th colspan="7"  class="text-center" scope="row">No existen registros por el momento</th>
+                                                <th colspan="8"  class="text-center" scope="row">No existen registros por el momento</th>
                                         </tr>
                                         <tr v-else v-for="(registrofinalizados, index) in registrosFinalizados">
                                                 <th  class="text-center " scope="row">{{index+1}}</th>
                                                 <td>{{registrofinalizados.productor}}</td>
-                                                <td class="text-center">{{registrofinalizados.placas}}</td>
-                                                <td class="text-center">{{registrofinalizados.peso_bruto}}</td>
-                                                <td class="text-center">{{registrofinalizados.tara}}</td>
-                                                <td class="text-center">{{registrofinalizados.fecha_final}}</td>
-                                                <td class="text-center">{{registrofinalizados.neto}}</td>
+                                                <td class="text-center">{{registrofinalizados.cajas}} (Pzas.)</td>
+                                                <td class="text-center">{{registrofinalizados.peso_bruto}} (Kg.)</td>
+                                                <td class="text-center">{{registrofinalizados.tara}} (Kg.)</td>
+                                                <td class="text-center">{{registrofinalizados.fecha_dma}}</td>
+                                                <td class="text-center">{{registrofinalizados.neto}} (Kg.)</td>
+                                                <td class="text-center">${{registrofinalizados.pagar}}</td>
                                         </tr>
                                     </tbody>
                             </table>

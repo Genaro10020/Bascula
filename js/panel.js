@@ -3,15 +3,16 @@ const app = {
         return{
           idProductor:'',
           nombre:'',
-          pesobruto: null,
-          pesotara: null,
-          pesoneto: null,
+          pesobruto: '',
+          pesotara: '',
+          pesoneto: '',
+          pagar:'',
           opcionUno:1,
           opcionDos:0,
           opcionTres:0,
           opcionCuatro:0,
           productor:'',
-          placas:'',
+          cajas:'',
           resultados: [],
           registrosBrutos: [],
           registrosFinalizados: [],
@@ -32,39 +33,46 @@ const app = {
 
     },methods:{
         guardarPeso(){
-                axios.post("guardarPeso.php",{
-                        productor:this.productor,
-                        placas:this.placas,
-                        pesobruto:this.pesobruto,
-                        pesotara:this.pesotara,
-                        pesoneto:this.pesoneto,
-                        bandera:this.mostrarInput,
-                        id:this.idProductor
-                }).then(response=>{
-                        console.log(response.data);
-                        if(response.data ==true){
-                        alert("guardado con exito")
-                        this.mostrarInput =0
-                        this.idProductor=""
-                        this.resultados = [];
-                        this.nombre=""
-                        this.productor=""
-                        this.placas=""
-                        this.pesobruto=null
-                        this.pesotara= null
-                        this.pesoneto=null
-                        }else{
-                            alert('Algo salio mal :-(')
-                        }
-                }).catch(error=>{
-                    console.log("Error :-("+error)
-                }).finally(()=>{
+          
+            if (this.mostrarInput == 1 && this.pesotara==0  || this.mostrarInput == 1 && this.pagar == 0) {
+                 alert("¿Tara o total a pagar esta vacio asi desea continuar?")
+            }else{
+                    axios.post("guardarPeso.php",{
+                            productor:this.productor,
+                            cajas:this.cajas,
+                            pesobruto:this.pesobruto,
+                            pesotara:this.pesotara,
+                            pesoneto:this.pesoneto,
+                            pagar:this.pagar,
+                            bandera:this.mostrarInput,
+                            id:this.idProductor
+                    }).then(response=>{
+                            console.log(response.data);
+                            if(response.data ==true){
+                            alert("guardado con exito")
+                            this.mostrarInput =0
+                            this.idProductor=""
+                            this.resultados = [];
+                            this.nombre=""
+                            this.productor=""
+                            this.cajas=""
+                            this.pesobruto=''
+                            this.pesotara= ''
+                            this.pesoneto=''
+                            this.pagar=''
+                            }else{
+                                alert('Algo salio mal :-(')
+                            }
+                    }).catch(error=>{
+                        console.log("Error :-("+error)
+                    }).finally(()=>{
 
-                })
+                    })
+                }
         },
-        toUpperCase() {
-                    this.placas = this.placas.toUpperCase();
-          },
+        /*toUpperCase() {
+                    this.cajas = this.cajas.toUpperCase();
+          },*/
           buscarDatosAutocompletado() {
                 if(this.nombre!=''){
                             axios.post("buscarProductor.php",{
@@ -88,10 +96,11 @@ const app = {
                     this.resultados = [];
                     this.nombre=""
                     this.productor=""
-                    this.placas=""
-                    this.pesobruto=null
-                    this.pesotara= null
-                    this.pesoneto=null
+                    this.cajas=""
+                    this.pesobruto=''
+                    this.pesotara= ''
+                    this.pesoneto=''
+                    this.pesoneto=''
 
                 }
                     
@@ -110,17 +119,19 @@ const app = {
                         this.nombre = response.data.productor
                         this.idProductor=response.data.id
                         this.productor=response.data.productor
-                        this.placas=response.data.placas
+                        this.cajas=response.data.cajas
                         this.pesobruto=response.data.peso_bruto
                         this.pesotara=response.data.tara
                         this.pesoneto=response.data.neto
+                        this.pagar=response.data.pagar
                     }else{
                         alert("No se encontreo el productor seleccionado")
                             this.productor=''
-                            this.placas=''
-                            this.pesobruto=null
-                            this.pesotara= null
-                            this.pesoneto=null
+                            this.cajas=''
+                            this.pesobruto=''
+                            this.pesotara= ''
+                            this.pesoneto=''
+                            this.pagar=''
                     }
                }).catch(error => {
                     console.log('Axios Error: ' + error);
@@ -130,10 +141,11 @@ const app = {
               this.mostrarInput =0
                 this.nombre=""
                 this.productor=""
-                this.placas=""
-                this.pesobruto=null
-                this.pesotara= null
-                this.pesoneto=null
+                this.cajas=""
+                this.pesobruto=''
+                this.pesotara= ''
+                this.pesoneto=''
+                this.pagar=''
           },
           restarTaraBruto(){
             this.pesoneto=this.pesobruto-this.pesotara;

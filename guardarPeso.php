@@ -9,15 +9,16 @@ $respuesta="";
 $fecha_actual = date('Y-m-d H:i:s');
 
 $id=$arreglo['id'];
-$placas=$arreglo['placas'];
+$cajas=$arreglo['cajas'];
 $productor=$arreglo['productor'];
 $pesobruto=$arreglo['pesobruto'];
 $pesotara=$arreglo['pesotara'];
 $pesoneto=$arreglo['pesoneto'];
 $bandera=$arreglo['bandera'];
+$pagar=$arreglo['pagar'];
 
 if($bandera==0){
-            $insertar = "INSERT INTO  registros (placas,peso_bruto,fecha_pesaje,usuario,productor) VALUES ('$placas','$pesobruto','$fecha_actual','$usuario','$productor')";
+            $insertar = "INSERT INTO  registros (cajas,peso_bruto,fecha_pesaje,usuario,productor) VALUES ('$cajas','$pesobruto','$fecha_actual','$usuario','$productor')";
             $query = mysqli_query($con,$insertar);
             if($query){
                     $respuesta=$query;
@@ -25,7 +26,7 @@ if($bandera==0){
                     $respuesta= "Error en la consulta:".mysqli_error($con);
                 }
 }else if($bandera==1){
-        $actualizar = "UPDATE  registros SET tara='$pesotara', fecha_final='$fecha_actual', neto='$pesoneto' WHERE id='$id'";
+        $actualizar = "UPDATE  registros SET tara='$pesotara', fecha_final='$fecha_actual', neto='$pesoneto', pagar='$pagar' WHERE id='$id'";
         $query = mysqli_query($con,$actualizar);
          if($query){
                 $respuesta=$query;
